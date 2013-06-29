@@ -88,8 +88,18 @@ while not end_game:
         say(question,speakers)
         raw_input('Check chosen answer\n')
         chosen_answer = chosen_question['ChosenAnswer']
-        print chosen_answer
-        raw_input()
+        try:
+            print chosen_answer
+            say('Communicate winner:',['Zarvox'])
+            print_players(players)
+            winner = raw_input()
+            while int(winner) < 0 or int(winner) > (len(players)-1):
+                print_players(players)
+                winner = raw_input()
+            add_score(winner)
+            print_scores(players)
+        except Exception:
+            print 'Unable to print answer, probably it has something to do with encoding. Keep trying'
         say('Communicate winner:',['Zarvox'])
         print_players(players)
         winner = raw_input()
@@ -98,6 +108,7 @@ while not end_game:
             winner = raw_input()
         add_score(winner)
         print_scores(players)
+        raw_input()
     topic = raw_input('Choose next topic, type "q" to end game:')
     while topic == '':
         topic = raw_input('Choose next topic, type "q" to end game:')
